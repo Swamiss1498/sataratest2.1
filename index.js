@@ -71,10 +71,10 @@ app.post("/api/students", async (req, res) => {
   }
 
   const query = `
-    INSERT INTO students ("rollNo", name, age, weight, contact, gender, race, academy, studentrole)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-    RETURNING "rollNo"
-  `;
+  INSERT INTO students (rollno, name, age, weight, contact, gender, race, academy, studentrole)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+  RETURNING rollno
+`;
 
   try {
     const result = await pool.query(query, [
