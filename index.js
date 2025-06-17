@@ -28,14 +28,24 @@ require('dotenv').config();
 //     database: process.env.DB_NAME
 // });
 
-
+// ✅ PostgreSQL Connection with Render (SSL required)
 const pool = new Pool({
-  host: process.env.DB_HOST,      // e.g., 'localhost'
-  user: process.env.DB_USER,      // e.g., 'postgres'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: 5432                      // PostgreSQL default port
+  port: 5432,
+  ssl: {
+    rejectUnauthorized: false  // <== This line ensures SSL works with Render
+  }
 });
+// const pool = new Pool({
+//   host: process.env.DB_HOST,      // e.g., 'localhost'
+//   user: process.env.DB_USER,      // e.g., 'postgres'
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME,
+//   port: 5432                      // PostgreSQL default port
+// });
 
 // pool.connect((err, client, release) => {
 //   if (err) {
